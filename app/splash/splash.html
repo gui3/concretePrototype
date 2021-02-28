@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>loading...</title>
+    <style media="screen">
+/* basic css for instant appearance */
+body {
+  padding: 1em;
+  background: #fff;
+}
+    </style>
+  </head>
+  <body onclick="ipc.send('bodyClicked')">
+    <div>
+
+      <h1 id="appName">
+        <♯> ConcreteSound
+      </h1>
+      <p>
+        Loading ... <span id="loadPercent"></span>
+      </p>
+      <button type="button" id="btnClose">
+        CANCEL - quit the application
+      </button>
+
+    </div>
+  </body>
+  <script type="text/javascript">
+var { ipcRenderer } = require('electron')
+
+var btnClose = document.getElementById('btnClose')
+
+btnClose.addEventListener('click', function () {
+    // ipc.once('actionReply', function(event, response){
+    //     processResponse(response);
+    // })
+    ipcRenderer.send('quitApp') // , 'someData');
+});
+  </script>
+</html>
