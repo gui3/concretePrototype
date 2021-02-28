@@ -1,0 +1,21 @@
+:*concrete script*:
+
+:id stereo_gain
+:v 0.0
+:author gui3 email:guillaume@example.fr
+
+:**elements
+:+ in.audio.mono audio_in_left name:"audio in left" x:50 y:48
+:+ in.audio.mono audio_in_right name:"audio in right" x:60 y:48
+:+ control.pot gain_knob label:gain model:% x:50 y:80 &x:0 &y:0
+:+ ~* *left x:50 y:100
+:+ ~* *right x:50 y:100
+:+ out.audio.stereo audio_out name:"audio out" x:50 y:120
+
+:**connections
+:> audio_in_left:signal *left:trigger_operator
+:> audio_in_right:signal *right:trigger_operator
+:> gain_knob:value *left:passive_operator
+:> gain_knob:value *right:passive_operator
+:> *left:result audio_out:signal_left
+:> *right:result audio_out:signal_right
